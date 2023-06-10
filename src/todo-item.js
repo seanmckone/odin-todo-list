@@ -14,3 +14,5 @@ class todoItem {
   }
 
 }
+
+export default todoItem;
