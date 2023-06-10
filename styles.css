@@ -79,3 +79,20 @@ h1 {
   gap: 15px
 }
 
+.todo-right-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+.todo-delete-button {
+  border: 0px;
+  background-color: #F6F6F6;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: -10px;
+  width: 30px;
+
+}
+

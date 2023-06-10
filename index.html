@@ -6,14 +6,34 @@
   <title>Document</title>
   <script src="main.js"></script>
   <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="layout.css">
-  <link rel="stylesheet" href="lightmode_colors.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <h1>todo</h1>
   </header>
-  <div id="todo-list"></div>
+  <div id="todo-list">
+    <div class="todo">
+      <div class="todo-left-section">
+        <h3 class="todo-title">test todo</h2>
+        <p class="todo-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Nulla eros libero, porttitor sit amet volutpat quis, finibus quis velit. Nulla elementum ante vitae finibus porta. 
+          Sed mollis erat orci, non venenatis ligula mollis id. Phasellus rutrum, risus at dapibus tempor, sem orci vehicula risus, a aliquet purus ante quis lorem. 
+          Proin at diam a magna tincidunt tincidunt. Morbi sit amet justo bibendum velit congue pellentesque id ac nisl. 
+          Proin gravida diam ut orci bibendum, eget varius nisl ultrices.
+        </p>
+      </div>
+      <div class="todo-right-section">
+        <p class="todo-dueDate">6/12/2023</p>
+        <button type="button" class="todo-delete-button">
+          <img src="../assets/icons/trash-can-outline.svg">
+        </button>
+      </div>
+    </div>
+  </div>
+
+
   <button type="button" id="add-todo-button">+</button>
 </body>
 </html>
