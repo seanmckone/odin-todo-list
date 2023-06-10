@@ -1,8 +1,41 @@
-header {
+@font-face {
+  font-family: openSans;
+  src: url(../assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf);
+}
 
+@font-face {
+  font-family: openSansItalic;
+  src: url(../assets/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf);
+}
+
+@font-face {
+  font-family: scopeOne;
+  src: url(../assets/fonts/Scope_One/ScopeOne-Regular.ttf);
+}
+
+header {
+  padding-top: 5px;
 }
 
 h1 {
-  font-size: 40px;
-  margin-left: 20px;
+  font-size: 32px;
+  margin-left: 10px;
+  font-family: scopeOne;
+}
+
+#add-todo-button {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  
+  font-size: 30px;
+  height: 40px;
+  width: 50px;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  
 }
