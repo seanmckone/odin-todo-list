@@ -25,16 +25,37 @@ header, #add-todo-button {
 body {
   font-family: openSans;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
   padding-top: 5px;
+  width: 100%;
 }
 
 h1 {
   font-size: 32px;
   margin-left: 10px;
   font-family: scopeOne;
+}
+
+input[type=text], textarea {
+  background-color: #F6F6F6;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  font-family: openSans;
+  resize: none;
+}
+
+::placeholder {
+  font-style: italic;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }
 
 #add-todo-button {
@@ -57,17 +78,24 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
+  max-width: 700px;
 }
 
 .todo-title {
   font-size: 22px;
 }
 
+.todo-description {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 .todo {
   display: flex;
   flex-direction: row;
-  max-width: 700px;
-  gap: 30px;
+  justify-content: space-between;
+  width: 100%;
   
   padding: 20px;
   border-radius: 10px;
@@ -93,6 +121,10 @@ h1 {
   padding: 0px;
   margin-bottom: -10px;
   width: 30px;
+}
 
+.todo-due-date {
+  font-size: 18px;
+  margin-top: 4px;
 }
 
