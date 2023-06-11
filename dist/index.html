@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="main.js"></script>
+  <script src="main.js" defer></script>
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,9 +13,28 @@
     <h1>todo</h1>
   </header>
   <div id="todo-list">
-    <div class="todo">
+    <form class="todo">
       <div class="todo-left-section">
-        <h3 class="todo-title">test todo</h2>
+        <input type="text" class="todo-title" placeholder="new todo">
+        <textarea class="todo-description" placeholder="description" rows="4"></textarea>
+      </div>
+      <div class="todo-right-section">
+        <input type="date">
+        <button type="button" class="todo-delete-button">
+          <img src="../assets/icons/trash-can-outline.svg">
+        </button>
+      </div>
+    </form>
+  </div>
+  <button type="button" id="add-todo-button">+</button>
+</body>
+</html>
+
+
+
+<!-- <div class="todo">
+      <div class="todo-left-section">
+        <h3 class="todo-title">test todo</h3>
         <p class="todo-description">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
           Nulla eros libero, porttitor sit amet volutpat quis, finibus quis velit. Nulla elementum ante vitae finibus porta. 
@@ -30,20 +49,4 @@
           <img src="../assets/icons/trash-can-outline.svg">
         </button>
       </div>
-    </div>
-    <form class="todo">
-      <div class="todo-left-section">
-        <input type="text" class="todo-title" placeholder="new todo">
-        <textarea class="todo-description" placeholder="description" rows="1"></textarea>
-      </div>
-      <div class="todo-right-section">
-        <input type="date">
-        <button type="button" class="todo-delete-button">
-          <img src="../assets/icons/trash-can-outline.svg">
-        </button>
-      </div>
-    </form>
-  </div>
-  <button type="button" id="add-todo-button">+</button>
-</body>
-</html>
+    </div> -->
