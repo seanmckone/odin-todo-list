@@ -13,70 +13,9 @@
     <h1>todo</h1>
   </header>
   <div id="todo-list">
-    <div class="todo">
-      <button class="completed-button"><img src="../assets/icons/circle-outline.svg"></button>
-      <h3 class="todo-title">Test todo item</h3>
-    </div>
-    <div class="todo">
-      <button class="completed-button"><img src="../assets/icons/circle-outline.svg"></button>
-      <h3 class="todo-title">Test todo item</h3>
-    </div>
-    <div class="todo">
-      <button class="completed-button"><img src="../assets/icons/circle-outline.svg"></button>
-      <h3 class="todo-title">Test todo item</h3>
-    </div>
-    <div class="todo">
-      <button class="completed-button"><img src="../assets/icons/circle-outline.svg"></button>
-      <h3 class="todo-title">Test todo item</h3>
-    </div>
-  </div>
-  <button type="button" id="add-todo-button">+</button>
-</body>
-</html>
-
-
-
-<!-- <div class="todo">
-      <div class="todo-left-section">
-        <h3 class="todo-title">test todo</h3>
-        <p class="todo-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Nulla eros libero, porttitor sit amet volutpat quis, finibus quis velit. Nulla elementum ante vitae finibus porta. 
-          Sed mollis erat orci, non venenatis ligula mollis id. Phasellus rutrum, risus at dapibus tempor, sem orci vehicula risus, a aliquet purus ante quis lorem. 
-          Proin at diam a magna tincidunt tincidunt. Morbi sit amet justo bibendum velit congue pellentesque id ac nisl. 
-          Proin gravida diam ut orci bibendum, eget varius nisl ultrices.
-        </p>
-      </div>
-      <div class="todo-right-section">
-        <p class="todo-due-date">6/12/2023</p>
-        <button type="button" class="todo-delete-button">
-          <img src="../assets/icons/trash-can-outline.svg">
-        </button>
-      </div>
-    </div> -->
-
-
-    <!-- <form class="todo">
-      <div class="todo-left-section">
-        <input type="text" class="todo-title" placeholder="new todo">
-        <textarea class="todo-description" placeholder="description" rows="4"></textarea>
-      </div>
-      <div class="todo-right-section">
-        <input type="date">
-        <button type="button" class="todo-delete-button">
-          <img src="../assets/icons/trash-can-outline.svg">
-        </button>
-      </div>
-    </form> -->
-
-    <!-- <div class="todo">
-      <button class="completed-button"><img src="../assets/icons/circle-outline.svg"></button>
-      <h3 class="todo-title">Test todo item</h3>
-    </div> -->
-
-    <!-- <form class="todo-form">
+    <form action="/add-todo" method="post" id="todo-form">
       <div class="todo-form-left-section">
-        <button class="completed-button"><img src="../assets/icons/circle-outline.svg"></button>
+        <button type="button" id="todo-form-completed-button"><img src="../assets/icons/checkbox-blank-outline.svg"></button>
       </div>
       <div class="todo-form-middle-section">
         <input type="text" class="todo-form-title" placeholder="new todo">
@@ -88,4 +27,9 @@
           <img src="../assets/icons/trash-can-outline.svg">
         </button>
       </div>
-    </form> -->
+    </form>
+  </div>
+  <button type="button" id="add-todo-button">+</button>
+  
+</body>
+</html>

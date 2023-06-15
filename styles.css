@@ -22,10 +22,6 @@ header, #add-todo-button {
   box-sizing:border-box;
 }
 
-.todo-form {
-  background-color: #F6F6F6;
-}
-
 body {
   font-family: openSans;
   font-size: 16px;
@@ -46,7 +42,7 @@ h1 {
 }
 
 input[type=text], input[type=date], textarea{
-  background-color: #F6F6F6;
+  background-color: rgba(0,0,0,0);
   padding: 0px;
   margin: 0px;
   border: 0px;
@@ -115,7 +111,7 @@ textarea:focus, input:focus{
   line-height: 1.5;
 }
 
-.todo-form {
+#todo-form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -123,6 +119,7 @@ textarea:focus, input:focus{
   gap: 10px;
   padding: 15px;
   border-radius: 10px;
+  background-color: #F6F6F6;
 }
 
 .todo-form-middle-section {
@@ -140,7 +137,7 @@ textarea:focus, input:focus{
 }
 .todo-form-delete-button {
   border: 0px;
-  background-color: #F6F6F6;
+  background-color: rgba(0,0,0,0);
   cursor: pointer;
   margin: 0px;
   padding: 0px;
@@ -153,7 +150,7 @@ textarea:focus, input:focus{
   margin-top: 4px;
 }
 
-.completed-button {
+.completed-button, #todo-form-completed-button {
   width: 30px;
   height: 30px;
   background-color: rgba(0,0,0,0);
