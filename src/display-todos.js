@@ -9,9 +9,15 @@ function displayTodos(todoList) {
     todo.classList.add("todo");
 
     const completedButton = document.createElement("button");
+    completedButton.type = "button";
+
+    completedButton.addEventListener("click", function () {
+      completedButton.innerHTML = '<img src="../assets/icons/checkbox-outline.svg">';
+    });
+
     completedButton.classList.add("completed-button")
     const completedButtonIcon = document.createElement("img");
-    completedButtonIcon.src = "../assets/icons/circle-outline.svg";
+    completedButtonIcon.src = "../assets/icons/checkbox-blank-outline.svg";
     completedButton.appendChild(completedButtonIcon);
     todo.appendChild(completedButton);
 
