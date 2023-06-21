@@ -120,6 +120,11 @@ textarea:focus, input:focus{
   padding: 15px;
   border-radius: 10px;
   background-color: #F6F6F6;
+  margin-top: -15px;
+}
+
+.todo-form-left-section {
+  margin-top: 2px;
 }
 
 .todo-form-middle-section {
@@ -176,4 +181,5 @@ textarea:focus, input:focus{
   border-radius: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  height: 33px;
 }
