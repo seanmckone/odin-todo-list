@@ -61,10 +61,6 @@ function todoForm () {
   todoFormDeleteButton.type = "button";
   todoFormDeleteButton.id = "todo-form-delete-button";
 
-  todoFormDeleteButton.addEventListener("click", function () {
-    todoForm.remove();
-  });
-
   const deleteButtonImage = document.createElement("img");
   deleteButtonImage.src = "../assets/icons/trash-can-outline.svg";
 
