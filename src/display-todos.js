@@ -30,6 +30,7 @@ function displayTodos(todoList) {
   });
 
   return todoListElement;
+  
 }
 
 export default displayTodos;

@@ -135,7 +135,13 @@ textarea:focus, input:focus{
   justify-content: space-between;
   align-items: end;
 }
-#todo-form-delete-button {
+
+.todo-form-bottom-right {
+  display: flex;
+  gap: 10px;
+}
+
+#todo-form-delete-button, #todo-form-submit-button {
   border: 0px;
   background-color: rgba(0,0,0,0);
   cursor: pointer;

@@ -44,7 +44,20 @@ function todoForm () {
   todoFormDate.id = "todo-form-date";
   todoFormRightSection.appendChild(todoFormDate);
 
-  const todoFormDeleteButton = document.createElement("div");
+  const todoFormBottomRight = document.createElement("div");
+  todoFormBottomRight.classList.add("todo-form-bottom-right");
+
+  const todoFormSubmitButton = document.createElement("button");
+  todoFormSubmitButton.type = "submit";
+  todoFormSubmitButton.id = "todo-form-submit-button";
+
+  const submitButtonImage = document.createElement("img");
+  submitButtonImage.src = "../assets/icons/check.svg";
+
+  todoFormSubmitButton.appendChild(submitButtonImage);
+  todoFormBottomRight.appendChild(todoFormSubmitButton);
+
+  const todoFormDeleteButton = document.createElement("button");
   todoFormDeleteButton.type = "button";
   todoFormDeleteButton.id = "todo-form-delete-button";
 
@@ -56,7 +69,8 @@ function todoForm () {
   deleteButtonImage.src = "../assets/icons/trash-can-outline.svg";
 
   todoFormDeleteButton.appendChild(deleteButtonImage);
-  todoFormRightSection.appendChild(todoFormDeleteButton);
+  todoFormBottomRight.appendChild(todoFormDeleteButton);
+  todoFormRightSection.appendChild(todoFormBottomRight);
   todoForm.appendChild(todoFormRightSection);
 
   return todoForm;
