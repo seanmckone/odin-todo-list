@@ -1,4 +1,6 @@
-function todoForm () {
+import moment from "moment";
+
+function todoForm (defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD')) {
 
   const todoForm = document.createElement("form");
   todoForm.action = "/add-todo";
@@ -16,6 +18,10 @@ function todoForm () {
   const completedButtonImage = document.createElement("img");
   completedButtonImage.src = "../assets/icons/checkbox-blank-outline.svg";
 
+  todoFormCompletedButton.addEventListener("click", function () {
+    todoFormCompletedButton.innerHTML = '<img src="../assets/icons/checkbox-outline.svg">';
+  });
+
   todoFormCompletedButton.appendChild(completedButtonImage);
   todoFormLeftSection.appendChild(todoFormCompletedButton);
   todoForm.appendChild(todoFormLeftSection);
@@ -27,12 +33,14 @@ function todoForm () {
   todoFormTitle.type = "text";
   todoFormTitle.id = "todo-form-title";
   todoFormTitle.placeholder = "new todo";
+  todoFormTitle.value = defaultTitle;
   todoFormMiddleSection.appendChild(todoFormTitle);
 
   const todoFormDescription = document.createElement("textarea");
   todoFormDescription.id = "todo-form-description";
   todoFormDescription.placeholder = "description";
   todoFormDescription.rows = "4";
+  todoFormDescription.value = defaultDescription;
   todoFormMiddleSection.appendChild(todoFormDescription);
   todoForm.appendChild(todoFormMiddleSection);
 
@@ -42,6 +50,7 @@ function todoForm () {
   const todoFormDate = document.createElement("input");
   todoFormDate.type = "date";
   todoFormDate.id = "todo-form-date";
+  todoFormDate.value = defaultDate;
   todoFormRightSection.appendChild(todoFormDate);
 
   const todoFormBottomRight = document.createElement("div");
