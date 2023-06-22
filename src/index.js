@@ -2,17 +2,26 @@ import todoItem from "./todo-item";
 import displayTodos from "./display-todos";
 import todoForm from "./todo-form";
 
+// List of todo-item objects
 let todoItemList = new Array();
-todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
-
+// True if a todo form is currently open
 let todoFormOpen = false;
+// The current open project
 let currentProject = "default";
 
-let todoList = displayTodos(todoItemList);
+todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
+
+let todoList = displayTodos(todoItemList, currentProject);
 document.body.appendChild(todoList);
 
+
+
+
+
+
+
 const addButton = document.getElementById("add-todo-button");
-addButton.addEventListener("click", function () {
+addButton.addEventListener("click", () => {
   if (!todoFormOpen) {
     const newTodoForm = new todoForm();
 
@@ -27,15 +36,15 @@ addButton.addEventListener("click", function () {
       );
       todoItemList.unshift(todoToSubmit);
       todoList.remove();
-      todoList = displayTodos(todoItemList);
-      body.appendChild(todoList);
+      todoList = displayTodos(todoItemList, currentProject);
+      document.body.appendChild(todoList);
       todoFormOpen = false;
     });
 
     todoList.insertBefore(newTodoForm, todoList.firstChild);
     todoFormOpen = true;
 
-    document.getElementById("todo-form-delete-button").addEventListener("click", function() {
+    document.getElementById("todo-form-delete-button").addEventListener("click", () => {
       newTodoForm.remove();
       todoFormOpen = false;
     });
