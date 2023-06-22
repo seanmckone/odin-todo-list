@@ -8,12 +8,8 @@ function displayTodos(todoList) {
     const todo = document.createElement("div");
     todo.classList.add("todo");
 
-    const completedButton = document.createElement("button");
-    completedButton.type = "button";
-
-    completedButton.addEventListener("click", function () {
-      completedButton.innerHTML = '<img src="../assets/icons/checkbox-outline.svg">';
-    });
+    const completedButton = document.createElement("input");
+    completedButton.type = "checkbox";
 
     completedButton.classList.add("completed-button")
     const completedButtonIcon = document.createElement("img");

@@ -11,18 +11,10 @@ function todoForm (defaultTitle = null, defaultDescription = null, defaultDate =
   const todoFormLeftSection = document.createElement("div");
   todoFormLeftSection.classList.add("todo-form-left-section");
 
-  const todoFormCompletedButton = document.createElement("div");
-  todoFormCompletedButton.type = "button";
+  const todoFormCompletedButton = document.createElement("input");
+  todoFormCompletedButton.type = "checkbox";
   todoFormCompletedButton.id = "todo-form-completed-button";
 
-  const completedButtonImage = document.createElement("img");
-  completedButtonImage.src = "../assets/icons/checkbox-blank-outline.svg";
-
-  todoFormCompletedButton.addEventListener("click", function () {
-    todoFormCompletedButton.innerHTML = '<img src="../assets/icons/checkbox-outline.svg">';
-  });
-
-  todoFormCompletedButton.appendChild(completedButtonImage);
   todoFormLeftSection.appendChild(todoFormCompletedButton);
   todoForm.appendChild(todoFormLeftSection);
 
