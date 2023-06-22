@@ -177,14 +177,9 @@ textarea:focus, input:focus{
   margin-top: 4px;
 }
 
-.completed-button, #todo-form-completed-button {
-  width: 30px;
-  height: 30px;
-  background-color: rgba(0,0,0,0);
-  border: 0px;
-  padding: 0px;
-  user-select: none;
-  flex-shrink: 0;
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
 }
 
 .todo {
