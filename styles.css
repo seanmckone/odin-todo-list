@@ -118,6 +118,7 @@ textarea:focus, input:focus{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -184,7 +185,6 @@ textarea:focus, input:focus{
   padding: 0px;
   user-select: none;
   flex-shrink: 0;
-  cursor: pointer;
 }
 
 .todo {
