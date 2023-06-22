@@ -10,11 +10,10 @@ function displayTodos(todoList) {
 
     const completedButton = document.createElement("input");
     completedButton.type = "checkbox";
+    completedButton.checked = todoItem.isCompleted;
 
     completedButton.classList.add("completed-button")
-    const completedButtonIcon = document.createElement("img");
-    completedButtonIcon.src = "../assets/icons/checkbox-blank-outline.svg";
-    completedButton.appendChild(completedButtonIcon);
+
     todo.appendChild(completedButton);
 
     const todoTitle = document.createElement("h3");
