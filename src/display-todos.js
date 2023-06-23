@@ -13,6 +13,10 @@ function displayTodos(todoList, project) {
       completedButton.type = "checkbox";
       completedButton.checked = todoItem.isCompleted;
 
+      completedButton.addEventListener("click", () => {
+        todoItem.isCompleted = completedButton.checked;
+      });
+
       completedButton.classList.add("completed-button")
 
       todo.appendChild(completedButton);

@@ -23,23 +23,29 @@ let todoList = displayTodos(todoItemList, currentProject);
 let todoTitleList = document.getElementsByClassName("todo-title");
 reloadTodoList();
 
-addButton.addEventListener("click", function() { displayTodoForm(0)});
+addButton.addEventListener("click", function() { displayTodoForm(true, 0)});
 
-function displayTodoForm(insertionPoint, defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD')) {
+function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD'), isComplete = false) {
   if (!todoFormOpen) {
 
-    const newTodoForm = new todoForm(defaultTitle, defaultDescription, defaultDate);
+    const newTodoForm = new todoForm(defaultTitle, defaultDescription, defaultDate, isComplete);
 
     newTodoForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const todoToSubmit = new todoItem(
         newTodoForm.elements["todo-form-completed-button"].checked,
-        newTodoForm.elements["todo-form-title"].value,
+        newTodoForm.elements["todo-form-title"].value !== "" ? newTodoForm.elements["todo-form-title"].value : "new todo :)",
         newTodoForm.elements["todo-form-description"].value,
         newTodoForm.elements["todo-form-date"].value,
         currentProject
       );
-      todoItemList.splice(insertionPoint, 1, todoToSubmit);
+      if (fromAddButton) {
+        todoItemList.unshift(todoToSubmit);
+      }
+      else {
+        todoItemList.splice(insertionPoint, 1, todoToSubmit);
+      }
+
       reloadTodoList();
 
     });
@@ -51,15 +57,20 @@ function displayTodoForm(insertionPoint, defaultTitle = null, defaultDescription
       
     });
 
-    todoList.insertBefore(newTodoForm, todoTitleList[insertionPoint].parentElement);
-
-    todoTitleList[insertionPoint].parentElement.remove();
+    if (fromAddButton) {
+      todoList.insertBefore(newTodoForm, todoList.firstChild);
+    }
+    else {
+      todoList.insertBefore(newTodoForm, todoTitleList[insertionPoint].parentElement);
+      todoTitleList[insertionPoint].parentElement.remove();
+    }   
 
     todoFormOpen = true;
   }
 }
 
 function reloadTodoList() {
+  console.log(todoItemList);
   todoList.remove();
   todoList = displayTodos(todoItemList, currentProject);
   document.body.appendChild(todoList);
@@ -68,6 +79,6 @@ function reloadTodoList() {
   todoTitleList = document.getElementsByClassName("todo-title");
 
   for (let i = 0; i < todoTitleList.length; i++) {
-    todoTitleList[i].addEventListener("click", function() { displayTodoForm(i, todoItemList[i].title, todoItemList[i].description, todoItemList[i].date)});
+    todoTitleList[i].addEventListener("click", function() { displayTodoForm(false, i, todoItemList[i].title, todoItemList[i].description, todoItemList[i].dueDate, todoItemList[i].isCompleted)});
   }
 }

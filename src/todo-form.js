@@ -1,5 +1,5 @@
 
-function todoForm (defaultTitle, defaultDescription, defaultDate) {
+function todoForm (defaultTitle, defaultDescription, defaultDate, isComplete) {
 
   const todoForm = document.createElement("form");
   todoForm.action = "/add-todo";
@@ -13,6 +13,7 @@ function todoForm (defaultTitle, defaultDescription, defaultDate) {
   const todoFormCompletedButton = document.createElement("input");
   todoFormCompletedButton.type = "checkbox";
   todoFormCompletedButton.id = "todo-form-completed-button";
+  todoFormCompletedButton.checked = isComplete;
 
   todoFormLeftSection.appendChild(todoFormCompletedButton);
   todoForm.appendChild(todoFormLeftSection);
