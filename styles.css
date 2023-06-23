@@ -141,7 +141,7 @@ textarea:focus, input:focus{
 }
 
 .todo-form-left-section {
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .todo-form-middle-section {
@@ -181,6 +181,7 @@ textarea:focus, input:focus{
 input[type=checkbox] {
   width: 20px;
   height: 20px;
+  flex-shrink: 0;
 }
 
 .todo {
