@@ -20,6 +20,7 @@ function displayTodos(todoList, project) {
       const todoTitle = document.createElement("h3");
       todoTitle.classList.add("todo-title");
       todoTitle.textContent = todoItem.title;
+
       todo.appendChild(todoTitle);
 
       todoListElement.appendChild(todo);
