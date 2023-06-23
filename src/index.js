@@ -1,7 +1,9 @@
 import todoItem from "./todo-item";
 import displayTodos from "./display-todos";
 import todoForm from "./todo-form";
+import moment from "moment";
 
+// Fields
 // List of todo-item objects
 let todoItemList = new Array();
 // True if a todo form is currently open
@@ -9,21 +11,24 @@ let todoFormOpen = false;
 // The current open project
 let currentProject = "default";
 
+// Dom elements
+const addButton = document.getElementById("add-todo-button");
+
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
+todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-21", "default"));
+todoItemList.push(new todoItem(false, "test todo 3", "test desc", "2023-06-21", "default"));
+todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-06-21", "default"));
 
 let todoList = displayTodos(todoItemList, currentProject);
-document.body.appendChild(todoList);
+let todoTitleList = document.getElementsByClassName("todo-title");
+reloadTodoList();
 
+addButton.addEventListener("click", function() { displayTodoForm(0)});
 
-
-
-
-
-
-const addButton = document.getElementById("add-todo-button");
-addButton.addEventListener("click", () => {
+function displayTodoForm(insertionPoint, defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD')) {
   if (!todoFormOpen) {
-    const newTodoForm = new todoForm();
+
+    const newTodoForm = new todoForm(defaultTitle, defaultDescription, defaultDate);
 
     newTodoForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -34,59 +39,35 @@ addButton.addEventListener("click", () => {
         newTodoForm.elements["todo-form-date"].value,
         currentProject
       );
-      todoItemList.unshift(todoToSubmit);
-      todoList.remove();
-      todoList = displayTodos(todoItemList, currentProject);
-      document.body.appendChild(todoList);
-      todoFormOpen = false;
+      todoItemList.splice(insertionPoint, 1, todoToSubmit);
+      reloadTodoList();
+
     });
 
-    todoList.insertBefore(newTodoForm, todoList.firstChild);
-    todoFormOpen = true;
-
-    document.getElementById("todo-form-delete-button").addEventListener("click", () => {
+    newTodoForm.elements["todo-form-delete-button"].addEventListener("click", () => {
       newTodoForm.remove();
-      todoFormOpen = false;
+      todoItemList.splice(insertionPoint, 1);
+      reloadTodoList();
+      
     });
+
+    todoList.insertBefore(newTodoForm, todoTitleList[insertionPoint].parentElement);
+
+    todoTitleList[insertionPoint].parentElement.remove();
+
+    todoFormOpen = true;
   }
-});
+}
 
-// const todoTitleList = document.getElementsByClassName("todo");
+function reloadTodoList() {
+  todoList.remove();
+  todoList = displayTodos(todoItemList, currentProject);
+  document.body.appendChild(todoList);
+  todoFormOpen = false;
 
-// for (let i = 0; i < todoTitleList.length; i++) {
-//   todoTitleList[i].addEventListener("click", function() {
-  
-//     if (!todoFormOpen) {
-//       const newTodoForm = new todoForm();
-  
-//       newTodoForm.addEventListener("submit", (event) => {
-//         event.preventDefault();
-//         const todoToSubmit = new todoItem(
-//           false,
-//           newTodoForm.elements["todo-form-title"].value,
-//           newTodoForm.elements["todo-form-description"].value,
-//           newTodoForm.elements["todo-form-date"].value,
-//           null
-//         );
-//         todoItemList.splice(i, 1, todoToSubmit);
-//         todoList.remove();
-//         todoList = displayTodos(todoItemList);
-//         body.appendChild(todoList);
-//         todoFormOpen = false;
-//       });
+  todoTitleList = document.getElementsByClassName("todo-title");
 
-//       newTodoForm.elements["todo-form-title"].value = todoItemList[i].title;
-//       newTodoForm.elements["todo-form-description"].value = todoItemList[i].description;
-//       newTodoForm.elements["todo-form-date"].value = todoItemList[i].date;
-  
-//       todoList.insertBefore(newTodoForm, todoTitleList[i]);
-//       todoFormOpen = true;
-  
-//       document.getElementById("todo-form-delete-button").addEventListener("click", function() {
-//         newTodoForm.remove();
-//         todoFormOpen = false;
-//       });
-//       todoTitleList[i].remove();
-//     }
-//   });
-// }
+  for (let i = 0; i < todoTitleList.length; i++) {
+    todoTitleList[i].addEventListener("click", function() { displayTodoForm(i, todoItemList[i].title, todoItemList[i].description, todoItemList[i].date)});
+  }
+}
