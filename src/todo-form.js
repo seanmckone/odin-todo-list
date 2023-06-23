@@ -1,6 +1,5 @@
-import moment from "moment";
 
-function todoForm (defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD')) {
+function todoForm (defaultTitle, defaultDescription, defaultDate) {
 
   const todoForm = document.createElement("form");
   todoForm.action = "/add-todo";
