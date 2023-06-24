@@ -52,7 +52,9 @@ function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, def
 
     newTodoForm.elements["todo-form-delete-button"].addEventListener("click", () => {
       newTodoForm.remove();
-      todoItemList.splice(insertionPoint, 1);
+      if (!fromAddButton) {
+        todoItemList.splice(insertionPoint, 1);
+      }
       reloadTodoList();
       
     });
