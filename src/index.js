@@ -13,6 +13,7 @@ let currentProject = "default";
 
 // Dom elements
 const addButton = document.getElementById("add-todo-button");
+const themeSwitch = document.getElementById("theme-switch");
 
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
 todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-21", "default"));
@@ -70,6 +71,15 @@ function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, def
     todoFormOpen = true;
   }
 }
+
+themeSwitch.addEventListener("click", () => {
+  if ( document.documentElement.className == "light") {
+    document.documentElement.className = "dark";
+  }
+  else {
+    document.documentElement.className = "light";
+  }
+});
 
 function reloadTodoList() {
   console.log(todoItemList);

@@ -13,7 +13,7 @@
   src: url(../assets/fonts/Scope_One/ScopeOne-Regular.ttf);
 }
 
-:root {
+:root.light {
   --background-color: #FFFFFF;
   --todo-form-background-color: #F6F6F6;
   --font-color: #000000;
@@ -21,6 +21,16 @@
 
   --gradient-left-color: rgba(194,217,234,1);
   --gradient-right-color: rgba(157,227,194,1);
+}
+
+:root.dark  {
+  --background-color: #242424;
+  --todo-form-background-color: #1A1A1A;
+  --font-color: #aab8b5;
+  --placeholder-color: #969696;
+
+  --gradient-left-color: rgba(255,134,126,1);
+  --gradient-right-color: rgba(240,212,110,1);
 }
 
 header, #add-todo-button {
@@ -37,21 +47,41 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--background-color);
 }
 
 h1, h2, h3, p, button, input {
   color: var(--font-color);
 }
 
-header {
+h1 {
   padding-top: 5px;
+}
+
+header {
+  padding-top: 0px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#theme-switch {
+  background-color: rgba(0,0,0,0);
+  height: 30px;
+  width: 30px;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 h1 {
   font-size: 32px;
   padding-left: 7px;
   font-family: scopeOne;
+  color: #000000;
 }
 
 h2 {
@@ -102,7 +132,7 @@ textarea:focus, input:focus{
   border: 0px;
   border-radius: 5px;
   cursor: pointer;
-
+  color: #000000;
 }
 
 #todo-list, #project-title {
@@ -137,6 +167,7 @@ textarea:focus, input:focus{
 #todo-form-description {
   font-size: 16px;
   line-height: 1.5;
+  color: var(--font-color);
 }
 
 #todo-form {
