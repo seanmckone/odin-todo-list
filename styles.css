@@ -135,7 +135,7 @@ textarea:focus, input:focus{
   color: #000000;
 }
 
-#project-list {
+#project-list-sidebar {
   position: fixed;
   left: 0px;
   top: 37px;
@@ -157,6 +157,8 @@ textarea:focus, input:focus{
   font-family: openSans;
   font-weight: bold;
   cursor: pointer;
+  width: 93%;
+  text-align: left;
 }
 
 #todo-list, #project-title {
@@ -171,6 +173,34 @@ textarea:focus, input:focus{
 
 #project-title {
   margin-top: 24px;
+}
+
+#project-list-title {
+  font-weight: 100;
+  padding-left: 6px;
+}
+
+#project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+#permanent-project-list, #custom-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+#project-list button {
+  border: 0px;
+  background-color: rgba(0,0,0,0);
+  font-size: 20px;
+  font-weight: 100;
+  font-family: openSans;
+  text-align: left;
 }
 
 
