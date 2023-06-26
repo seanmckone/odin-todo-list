@@ -66,7 +66,7 @@ header {
   align-items: center;
 }
 
-#theme-switch {
+#theme-switch, #nav-toggle {
   background-color: rgba(0,0,0,0);
   height: 30px;
   width: 30px;
@@ -75,6 +75,10 @@ header {
   border: 0px;
   margin-right: 5px;
   cursor: pointer;
+}
+
+#nav-toggle {
+  display: none;
 }
 
 h1 {
@@ -298,6 +302,9 @@ input[type=checkbox] {
 @media screen and (max-width: 1440px) {
   #project-list-sidebar {
     display: none;
+  }
+  #nav-toggle {
+    display: flex;
   }
 }
 
