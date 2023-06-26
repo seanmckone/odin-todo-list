@@ -14,6 +14,7 @@ let currentProject = "default";
 // Dom elements
 const addButton = document.getElementById("add-todo-button");
 const themeSwitch = document.getElementById("theme-switch");
+const navToggle = document.getElementById("nav-toggle");
 
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
 todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-21", "default"));
@@ -80,6 +81,14 @@ themeSwitch.addEventListener("click", () => {
     document.documentElement.className = "light";
   }
 });
+
+navToggle.addEventListener("click", () => {
+  document.getElementById("project-title").style.display = "none";
+  document.getElementById("todo-list").style.display = "none";
+  document.getElementById("add-todo-button").style.display = "none";
+  document.getElementById("project-list-sidebar").style.display = "flex";
+  document.getElementById("project-list-sidebar").style.width = "100%";
+})
 
 function reloadTodoList() {
   console.log(todoItemList);
