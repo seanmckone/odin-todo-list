@@ -10,6 +10,9 @@ let todoItemList = new Array();
 let todoFormOpen = false;
 // The current open project
 let currentProject = "default";
+// Whether to display completed todos only
+let displayCompleted = false;
+
 
 // Dom elements
 const addButton = document.getElementById("add-todo-button");
@@ -17,11 +20,11 @@ const themeSwitch = document.getElementById("theme-switch");
 const navToggle = document.getElementById("nav-toggle");
 
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
-todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-21", "default"));
+todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "default"));
 todoItemList.push(new todoItem(false, "test todo 3", "test desc", "2023-06-21", "default"));
 todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-06-21", "default"));
 
-let todoList = displayTodos(todoItemList, currentProject);
+let todoList = displayTodos(todoItemList, currentProject, displayCompleted);
 let todoTitleList = document.getElementsByClassName("todo-title");
 reloadTodoList();
 
@@ -93,7 +96,7 @@ navToggle.addEventListener("click", () => {
 function reloadTodoList() {
   console.log(todoItemList);
   todoList.remove();
-  todoList = displayTodos(todoItemList, currentProject);
+  todoList = displayTodos(todoItemList, currentProject, displayCompleted);
   document.body.appendChild(todoList);
   todoFormOpen = false;
 

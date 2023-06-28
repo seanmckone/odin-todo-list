@@ -1,11 +1,22 @@
+import moment from "moment";
+
 // Display all todo items on the DOM
-function displayTodos(todoList, project) {
+function displayTodos(todoList, project, displayCompleted) {
 
   const todoListElement = document.createElement("div");
   todoListElement.id = "todo-list";
 
   todoList.forEach(todoItem => {
     if (todoItem.project === project) {
+
+      if (displayCompleted && !todoItem.isCompleted) {
+        return;
+      }
+
+      if (!displayCompleted && todoItem.isCompleted) {
+        return;
+      }
+
       const todo = document.createElement("div");
       todo.classList.add("todo");
 
@@ -15,6 +26,7 @@ function displayTodos(todoList, project) {
 
       completedButton.addEventListener("click", () => {
         todoItem.isCompleted = completedButton.checked;
+        completedButton.parentElement.remove();
       });
 
       completedButton.classList.add("completed-button")
