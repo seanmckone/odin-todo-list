@@ -9,15 +9,12 @@ function displayTodos(todoList, project, displayCompleted) {
   todoList.forEach(todoItem => {
     if (todoItem.project === project) {
 
-      if (displayCompleted && !todoItem.isCompleted) {
-        return;
-      }
-
-      if (!displayCompleted && todoItem.isCompleted) {
-        return;
-      }
 
       const todo = document.createElement("div");
+      if ((displayCompleted && !todoItem.isCompleted) || 
+          (!displayCompleted && todoItem.isCompleted)) {
+        todo.style.display = "none";
+      }
       todo.classList.add("todo");
 
       const completedButton = document.createElement("input");
