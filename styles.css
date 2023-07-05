@@ -321,12 +321,20 @@ input[type=checkbox] {
   background-color: var(--background-color);
 }
 
-#project-list button {
+#project-list button, #project-form {
   border-radius: 5px;
   padding-left: 20px;
   padding-right: 20px;
   height: 40px;
   margin-right: 30px;
+}
+
+#project-form {
+  background-color: var(--background-color);
+}
+
+#project-form-title {
+  font-size: 20px;
 }
 
 @media screen and (max-width: 1440px) {
