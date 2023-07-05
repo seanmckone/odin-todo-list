@@ -13,12 +13,16 @@ let currentProject = "default";
 // Whether to display completed todos only
 let displayCompleted = false; 
 // Whether to display today's todos only
-let displayToday = true;
+let displayToday = false;
 
 // Dom elements
 const addButton = document.getElementById("add-todo-button");
 const themeSwitch = document.getElementById("theme-switch");
 const navToggle = document.getElementById("nav-toggle");
+const projectTitle = document.getElementById("project-title");
+const allButton = document.getElementById("all-button");
+const todayButton = document.getElementById("today-button");
+const completedButton = document.getElementById("completed-todo-button");
 
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
 todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "default"));
@@ -84,6 +88,27 @@ themeSwitch.addEventListener("click", () => {
   else {
     document.documentElement.className = "light";
   }
+});
+
+allButton.addEventListener("click", () => {
+  projectTitle.textContent = "all";
+  displayCompleted = false;
+  displayToday = false;
+  reloadTodoList();
+});
+
+todayButton.addEventListener("click", () => {
+  projectTitle.textContent = "today";
+  displayCompleted = false;
+  displayToday = true;
+  reloadTodoList();
+});
+
+completedButton.addEventListener("click", () => {
+  projectTitle.textContent = "completed";
+  displayCompleted = true;
+  displayToday = false;
+  reloadTodoList();
 });
 
 navToggle.addEventListener("click", () => {
