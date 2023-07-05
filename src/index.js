@@ -6,10 +6,12 @@ import moment from "moment";
 // Fields
 // List of todo-item objects
 let todoItemList = new Array();
+// List of projects
+let projectList = new Array("general");
 // True if a todo form is currently open
 let todoFormOpen = false;
 // The current open project
-let currentProject = "default";
+let currentProject = "general";
 // Whether to display completed todos only
 let displayCompleted = false; 
 // Whether to display today's todos only
@@ -24,10 +26,10 @@ const allButton = document.getElementById("all-button");
 const todayButton = document.getElementById("today-button");
 const completedButton = document.getElementById("completed-todo-button");
 
-todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
-todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "default"));
-todoItemList.push(new todoItem(false, "test todo 3", "test desc", "2023-06-21", "default"));
-todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-07-05", "default"));
+todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "general"));
+todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "general"));
+todoItemList.push(new todoItem(false, "test todo 3", "test desc", "2023-06-21", "general"));
+todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-07-05", "general"));
 
 let todoList = displayTodos(todoItemList, currentProject, displayCompleted, displayToday);
 let todoTitleList = document.getElementsByClassName("todo-title");
@@ -35,7 +37,7 @@ reloadTodoList();
 
 addButton.addEventListener("click", function() { displayTodoForm(true, 0)});
 
-function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD'), isComplete = false) {
+function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD'), isComplete = displayCompleted) {
   if (!todoFormOpen) {
 
     const newTodoForm = new todoForm(defaultTitle, defaultDescription, defaultDate, isComplete);
@@ -120,7 +122,6 @@ navToggle.addEventListener("click", () => {
 })
 
 function reloadTodoList() {
-  console.log(todoItemList);
   todoList.remove();
   todoList = displayTodos(todoItemList, currentProject, displayCompleted, displayToday);
   document.body.appendChild(todoList);
