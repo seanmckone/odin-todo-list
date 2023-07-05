@@ -11,8 +11,9 @@ let todoFormOpen = false;
 // The current open project
 let currentProject = "default";
 // Whether to display completed todos only
-let displayCompleted = false;
-
+let displayCompleted = false; 
+// Whether to display today's todos only
+let displayToday = true;
 
 // Dom elements
 const addButton = document.getElementById("add-todo-button");
@@ -22,9 +23,9 @@ const navToggle = document.getElementById("nav-toggle");
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "default"));
 todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "default"));
 todoItemList.push(new todoItem(false, "test todo 3", "test desc", "2023-06-21", "default"));
-todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-06-21", "default"));
+todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-07-05", "default"));
 
-let todoList = displayTodos(todoItemList, currentProject, displayCompleted);
+let todoList = displayTodos(todoItemList, currentProject, displayCompleted, displayToday);
 let todoTitleList = document.getElementsByClassName("todo-title");
 reloadTodoList();
 
@@ -96,7 +97,7 @@ navToggle.addEventListener("click", () => {
 function reloadTodoList() {
   console.log(todoItemList);
   todoList.remove();
-  todoList = displayTodos(todoItemList, currentProject, displayCompleted);
+  todoList = displayTodos(todoItemList, currentProject, displayCompleted, displayToday);
   document.body.appendChild(todoList);
   todoFormOpen = false;
 

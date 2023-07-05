@@ -1,7 +1,7 @@
 import moment from "moment";
 
 // Display all todo items on the DOM
-function displayTodos(todoList, project, displayCompleted) {
+function displayTodos(todoList, project, displayCompleted, displayToday) {
 
   const todoListElement = document.createElement("div");
   todoListElement.id = "todo-list";
@@ -15,6 +15,11 @@ function displayTodos(todoList, project, displayCompleted) {
           (!displayCompleted && todoItem.isCompleted)) {
         todo.style.display = "none";
       }
+
+      if (displayToday && todoItem.dueDate !== moment().format('YYYY-MM-DD')) {
+        todo.style.display = "none";
+      }
+
       todo.classList.add("todo");
 
       const completedButton = document.createElement("input");
