@@ -2,12 +2,13 @@ import todoItem from "./todo-item";
 import displayTodos from "./display-todos";
 import todoForm from "./todo-form";
 import moment from "moment";
+import displayProjects from "./display-projects";
 
 // Fields
 // List of todo-item objects
 let todoItemList = new Array();
 // List of projects
-let projectList = new Array("general");
+let projectItemList = new Array("general", "tennis");
 // True if a todo form is currently open
 let todoFormOpen = false;
 // The current open project
@@ -25,15 +26,21 @@ const projectTitle = document.getElementById("project-title");
 const allButton = document.getElementById("all-button");
 const todayButton = document.getElementById("today-button");
 const completedButton = document.getElementById("completed-todo-button");
+const buttonList = document.getElementById("button-list");
 
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "general"));
 todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "general"));
 todoItemList.push(new todoItem(false, "test todo 3", "test desc", "2023-06-21", "general"));
 todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-07-05", "general"));
+todoItemList.push(new todoItem(false, "test todo 5", "test desc", "2023-07-05", "tennis"));
 
 let todoList = displayTodos(todoItemList, currentProject, displayCompleted, displayToday);
 let todoTitleList = document.getElementsByClassName("todo-title");
 reloadTodoList();
+
+let projectList = displayProjects(projectItemList);
+let projectNameList = document.getElementsByClassName("project");
+reloadProjectList();
 
 addButton.addEventListener("click", function() { displayTodoForm(true, 0)});
 
@@ -130,6 +137,21 @@ function reloadTodoList() {
   todoTitleList = document.getElementsByClassName("todo-title");
 
   for (let i = 0; i < todoTitleList.length; i++) {
-    todoTitleList[i].addEventListener("click", function() { displayTodoForm(false, i, todoItemList[i].title, todoItemList[i].description, todoItemList[i].dueDate, todoItemList[i].isCompleted)});
+    todoTitleList[i].addEventListener("click", () => { displayTodoForm(false, i, todoItemList[i].title, todoItemList[i].description, todoItemList[i].dueDate, todoItemList[i].isCompleted)});
+  }
+}
+
+function reloadProjectList() {
+  projectList.remove();
+  projectList = displayProjects(projectItemList);
+  buttonList.appendChild(projectList);
+
+  projectNameList = document.getElementsByClassName("project");
+
+  for (let i = 0; i < projectNameList.length; i++) {
+    projectNameList[i].addEventListener("click", () => { 
+      currentProject = projectNameList[i].textContent;
+      reloadTodoList();
+    });
   }
 }
