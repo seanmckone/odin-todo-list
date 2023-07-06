@@ -348,5 +348,8 @@ input[type=checkbox] {
   #nav-toggle {
     display: flex;
   }
+  #theme-switch {
+    display: none;
+  }
 }
 
