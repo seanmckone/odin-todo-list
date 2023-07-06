@@ -151,6 +151,10 @@ function reloadProjectList() {
   for (let i = 0; i < projectNameList.length; i++) {
     projectNameList[i].addEventListener("click", () => { 
       currentProject = projectNameList[i].textContent;
+      for (let j = 0; j < projectNameList.length; j++) {
+        projectNameList[j].classList.remove("selected-project");
+      }
+      projectNameList[i].classList.add("selected-project");
       reloadTodoList();
     });
   }

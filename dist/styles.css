@@ -337,6 +337,10 @@ input[type=checkbox] {
   font-size: 20px;
 }
 
+.selected-project {
+  background-color: var(--background-color) !important;
+}
+
 @media screen and (max-width: 1440px) {
   #project-list-sidebar {
     display: none;
