@@ -8,12 +8,12 @@ import projectForm from "./modules/project-form";
 // Fields
 // List of todo-item objects
 let todoItemList = new Array();
-if (JSON.parse(localStorage.getItem("todoItemList")).length === 0) {
+if (JSON.parse(localStorage.getItem("todoItemList")) == null) {
   localStorage.setItem("todoItemList", JSON.stringify(todoItemList));
 }
 // List of projects
 let projectItemList = new Array("general");
-if (JSON.parse(localStorage.getItem("projectItemList")).length === 0) {
+if (JSON.parse(localStorage.getItem("projectItemList")) == null) {
   localStorage.setItem("projectItemList", JSON.stringify(projectItemList));
 }
 // True if a todo form is currently open
