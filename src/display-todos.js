@@ -6,18 +6,19 @@ function displayTodos(todoList, project, displayCompleted, displayToday) {
   const todoListElement = document.createElement("div");
   todoListElement.id = "todo-list";
 
-  todoList.forEach(todoItem => {
+
+  for (let i = 0; i < todoList.length; i++) {
     const todo = document.createElement("div");
-    if ((displayCompleted && !todoItem.isCompleted) || 
-        (!displayCompleted && todoItem.isCompleted)) {
+    if ((displayCompleted && !todoList[i].isCompleted) || 
+        (!displayCompleted && todoList[i].isCompleted)) {
       todo.style.display = "none";
     }
 
-    if (displayToday && todoItem.dueDate !== moment().format('YYYY-MM-DD')) {
+    if (displayToday && todoList[i].dueDate !== moment().format('YYYY-MM-DD')) {
       todo.style.display = "none";
     }
 
-    if (todoItem.project !== project) {
+    if (todoList[i].project !== project) {
       todo.style.display = "none";
     }
 
@@ -25,10 +26,13 @@ function displayTodos(todoList, project, displayCompleted, displayToday) {
 
     const completedButton = document.createElement("input");
     completedButton.type = "checkbox";
-    completedButton.checked = todoItem.isCompleted;
+    completedButton.checked = todoList[i].isCompleted;
 
     completedButton.addEventListener("click", () => {
-      todoItem.isCompleted = completedButton.checked;
+      let tempTodoItemList = JSON.parse(localStorage.getItem("todoItemList"));
+      tempTodoItemList[i].isCompleted = completedButton.checked;
+      localStorage.setItem("todoItemList", JSON.stringify(tempTodoItemList));
+
       completedButton.parentElement.remove();
     });
 
@@ -38,12 +42,12 @@ function displayTodos(todoList, project, displayCompleted, displayToday) {
 
     const todoTitle = document.createElement("h3");
     todoTitle.classList.add("todo-title");
-    todoTitle.textContent = todoItem.title;
+    todoTitle.textContent = todoList[i].title;
 
     todo.appendChild(todoTitle);
 
     todoListElement.appendChild(todo);
-  });
+  };
 
   return todoListElement;
   

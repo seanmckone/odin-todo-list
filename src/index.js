@@ -29,6 +29,14 @@ let displayToday = false;
 // Whether mobile menu is open or not
 let menuOpen = false;
 
+if ( JSON.parse(localStorage.getItem("darkModeOn"))) {
+  document.documentElement.className = "dark";
+}
+else {
+  document.documentElement.className = "light";
+}
+
+
 // Dom elements
 const addButton = document.getElementById("add-todo-button");
 const themeSwitch = document.getElementById("theme-switch");
@@ -132,7 +140,8 @@ function displayProjectForm() {
 }
 
 themeSwitch.addEventListener("click", () => {
-  if ( document.documentElement.className == "light") {
+  localStorage.setItem("darkModeOn", JSON.stringify(!JSON.parse(localStorage.getItem("darkModeOn"))));
+  if ( JSON.parse(localStorage.getItem("darkModeOn"))) {
     document.documentElement.className = "dark";
   }
   else {
