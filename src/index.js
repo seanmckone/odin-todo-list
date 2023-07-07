@@ -8,8 +8,14 @@ import projectForm from "./project-form";
 // Fields
 // List of todo-item objects
 let todoItemList = new Array();
+if (JSON.parse(localStorage.getItem("todoItemList")).length === 0) {
+  localStorage.setItem("todoItemList", JSON.stringify(todoItemList));
+}
 // List of projects
-let projectItemList = new Array("general", "tennis");
+let projectItemList = new Array("general");
+if (JSON.parse(localStorage.getItem("projectItemList")).length === 0) {
+  localStorage.setItem("projectItemList", JSON.stringify(projectItemList));
+}
 // True if a todo form is currently open
 let todoFormOpen = false;
 // True if a project form is currently open
@@ -20,6 +26,8 @@ let currentProject = "general";
 let displayCompleted = false; 
 // Whether to display today's todos only
 let displayToday = false;
+// Whether mobile menu is open or not
+let menuOpen = false;
 
 // Dom elements
 const addButton = document.getElementById("add-todo-button");
@@ -32,19 +40,14 @@ const completedButton = document.getElementById("completed-todo-button");
 const buttonList = document.getElementById("button-list");
 const addProjectButton = document.getElementById("add-project-button");
 
-todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "general"));
-todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "general"));
-todoItemList.push(new todoItem(false, "test todo 3", "test desc", "2023-06-21", "general"));
-todoItemList.push(new todoItem(false, "test todo 4", "test desc", "2023-07-05", "general"));
-todoItemList.push(new todoItem(false, "test todo 5", "test desc", "2023-07-05", "tennis"));
-
-let todoList = displayTodos(todoItemList, currentProject, displayCompleted, displayToday);
+let todoList = displayTodos(JSON.parse(localStorage.getItem("todoItemList")), currentProject, displayCompleted, displayToday);
 let todoTitleList = document.getElementsByClassName("todo-title");
 reloadTodoList();
 
-let projectList = displayProjects(projectItemList);
+let projectList = displayProjects(JSON.parse(localStorage.getItem("projectItemList")));
 let projectNameList = document.getElementsByClassName("project");
 reloadProjectList();
+projectNameList[0].classList.add("selected-project");
 
 addButton.addEventListener("click", function() { displayTodoForm(true, 0) });
 addProjectButton.addEventListener("click", function() { displayProjectForm() });
@@ -64,10 +67,14 @@ function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, def
         currentProject
       );
       if (fromAddButton) {
-        todoItemList.unshift(todoToSubmit);
+        let tempTodoItemList = JSON.parse(localStorage.getItem("todoItemList"));
+        tempTodoItemList.unshift(todoToSubmit);
+        localStorage.setItem("todoItemList", JSON.stringify(tempTodoItemList));
       }
       else {
-        todoItemList.splice(insertionPoint, 1, todoToSubmit);
+        let tempTodoItemList = JSON.parse(localStorage.getItem("todoItemList"));
+        tempTodoItemList.splice(insertionPoint, 1, todoToSubmit);
+        localStorage.setItem("todoItemList", JSON.stringify(tempTodoItemList));
       }
 
       reloadTodoList();
@@ -77,7 +84,9 @@ function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, def
     newTodoForm.elements["todo-form-delete-button"].addEventListener("click", () => {
       newTodoForm.remove();
       if (!fromAddButton) {
-        todoItemList.splice(insertionPoint, 1);
+        let tempTodoItemList = JSON.parse(localStorage.getItem("todoItemList"));
+        tempTodoItemList.splice(insertionPoint, 1);
+        localStorage.setItem("todoItemList", JSON.stringify(tempTodoItemList));
       }
       reloadTodoList();
       
@@ -102,7 +111,10 @@ function displayProjectForm() {
     newProjectForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      projectItemList.push(newProjectForm.elements["project-form-title"].value !== "" ? newProjectForm.elements["project-form-title"].value : "new project :)");
+      let tempProjectItemList = JSON.parse(localStorage.getItem("projectItemList"));
+      tempProjectItemList.push(newProjectForm.elements["project-form-title"].value !== "" ? newProjectForm.elements["project-form-title"].value : "new project :)");
+      localStorage.setItem("projectItemList", JSON.stringify(tempProjectItemList));
+
       reloadProjectList();
 
       newProjectForm.remove();
@@ -150,30 +162,39 @@ completedButton.addEventListener("click", () => {
 });
 
 navToggle.addEventListener("click", () => {
-  document.getElementById("project-title").style.display = "none";
-  document.getElementById("todo-list").style.display = "none";
-  document.getElementById("add-todo-button").style.display = "none";
-  document.getElementById("project-list-sidebar").style.display = "flex";
-  document.getElementById("project-list-sidebar").style.width = "100%";
+  if (!menuOpen) {
+    document.getElementById("project-title").style.display = "none";
+    document.getElementById("todo-list").style.display = "none";
+    document.getElementById("add-todo-button").style.display = "none";
+    document.getElementById("project-list-sidebar").style.display = "flex";
+    document.getElementById("project-list-sidebar").style.width = "100%";
+  }
+  else {
+    document.getElementById("project-title").style.display = "flex";
+    document.getElementById("todo-list").style.display = "flex";
+    document.getElementById("add-todo-button").style.display = "block";
+    document.getElementById("project-list-sidebar").style.display = "none";
+  }
+  menuOpen = !menuOpen;
 })
 
 function reloadTodoList() {
   todoList.remove();
-  todoList = displayTodos(todoItemList, currentProject, displayCompleted, displayToday);
+  todoList = displayTodos(JSON.parse(localStorage.getItem("todoItemList")), currentProject, displayCompleted, displayToday);
   document.body.appendChild(todoList);
   todoFormOpen = false;
 
   todoTitleList = document.getElementsByClassName("todo-title");
 
   for (let i = 0; i < todoTitleList.length; i++) {
-    todoTitleList[i].addEventListener("click", () => { displayTodoForm(false, i, todoItemList[i].title, todoItemList[i].description, todoItemList[i].dueDate, todoItemList[i].isCompleted)});
+    todoTitleList[i].addEventListener("click", () => { displayTodoForm(false, i, JSON.parse(localStorage.getItem("todoItemList"))[i].title, JSON.parse(localStorage.getItem("todoItemList"))[i].description, JSON.parse(localStorage.getItem("todoItemList"))[i].dueDate, JSON.parse(localStorage.getItem("todoItemList"))[i].isCompleted)});
   }
 }
 
 function reloadProjectList() {
   projectFormOpen = false;
   projectList.remove();
-  projectList = displayProjects(projectItemList);
+  projectList = displayProjects(JSON.parse(localStorage.getItem("projectItemList")));
   buttonList.appendChild(projectList);
 
   projectNameList = document.getElementsByClassName("project");
