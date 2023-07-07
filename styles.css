@@ -1,16 +1,16 @@
 @font-face {
   font-family: openSans;
-  src: url(../assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf);
+  src: url(assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf);
 }
 
 @font-face {
   font-family: openSansItalic;
-  src: url(../assets/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf);
+  src: url(assets/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf);
 }
 
 @font-face {
   font-family: scopeOne;
-  src: url(../assets/fonts/Scope_One/ScopeOne-Regular.ttf);
+  src: url(assets/fonts/Scope_One/ScopeOne-Regular.ttf);
 }
 
 :root.light {
