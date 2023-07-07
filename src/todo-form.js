@@ -1,5 +1,5 @@
 
-function todoForm (defaultTitle, defaultDescription, defaultDate, isComplete) {
+function todoForm(defaultTitle, defaultDescription, defaultDate, isComplete) {
 
   const todoForm = document.createElement("form");
   todoForm.action = "/add-todo";

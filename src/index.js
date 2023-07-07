@@ -3,6 +3,7 @@ import displayTodos from "./display-todos";
 import todoForm from "./todo-form";
 import moment from "moment";
 import displayProjects from "./display-projects";
+import projectForm from "./project-form";
 
 // Fields
 // List of todo-item objects
@@ -11,6 +12,8 @@ let todoItemList = new Array();
 let projectItemList = new Array("general", "tennis");
 // True if a todo form is currently open
 let todoFormOpen = false;
+// True if a project form is currently open
+let projectFormOpen = false;
 // The current open project
 let currentProject = "general";
 // Whether to display completed todos only
@@ -27,6 +30,7 @@ const allButton = document.getElementById("all-button");
 const todayButton = document.getElementById("today-button");
 const completedButton = document.getElementById("completed-todo-button");
 const buttonList = document.getElementById("button-list");
+const addProjectButton = document.getElementById("add-project-button");
 
 todoItemList.push(new todoItem(false, "test todo 1", "test desc", "2023-06-21", "general"));
 todoItemList.push(new todoItem(false, "test todo 2", "test desc", "2023-06-27", "general"));
@@ -42,7 +46,8 @@ let projectList = displayProjects(projectItemList);
 let projectNameList = document.getElementsByClassName("project");
 reloadProjectList();
 
-addButton.addEventListener("click", function() { displayTodoForm(true, 0)});
+addButton.addEventListener("click", function() { displayTodoForm(true, 0) });
+addProjectButton.addEventListener("click", function() { displayProjectForm() });
 
 function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, defaultDescription = null, defaultDate = moment().format('YYYY-MM-DD'), isComplete = displayCompleted) {
   if (!todoFormOpen) {
@@ -87,6 +92,30 @@ function displayTodoForm(fromAddButton, insertionPoint, defaultTitle = null, def
     }   
 
     todoFormOpen = true;
+  }
+}
+
+function displayProjectForm() {
+  if (!projectFormOpen) {
+
+    const newProjectForm = new projectForm();
+    newProjectForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      projectItemList.push(newProjectForm.elements["project-form-title"].value !== "" ? newProjectForm.elements["project-form-title"].value : "new project :)");
+      reloadProjectList();
+
+      newProjectForm.remove();
+
+    });
+
+    newProjectForm.elements["project-form-delete-button"].addEventListener("click", () => {
+      newProjectForm.remove();
+      reloadProjectList();
+    });
+
+    buttonList.appendChild(newProjectForm);
+    projectFormOpen = true;
   }
 }
 
@@ -142,6 +171,7 @@ function reloadTodoList() {
 }
 
 function reloadProjectList() {
+  projectFormOpen = false;
   projectList.remove();
   projectList = displayProjects(projectItemList);
   buttonList.appendChild(projectList);
