@@ -53,7 +53,7 @@ function todoForm(defaultTitle, defaultDescription, defaultDate, isComplete) {
   todoFormSubmitButton.id = "todo-form-submit-button";
 
   const submitButtonImage = document.createElement("img");
-  submitButtonImage.src = "../assets/icons/check.svg";
+  submitButtonImage.src = "assets/icons/check.svg";
 
   todoFormSubmitButton.appendChild(submitButtonImage);
   todoFormBottomRight.appendChild(todoFormSubmitButton);
@@ -63,7 +63,7 @@ function todoForm(defaultTitle, defaultDescription, defaultDate, isComplete) {
   todoFormDeleteButton.id = "todo-form-delete-button";
 
   const deleteButtonImage = document.createElement("img");
-  deleteButtonImage.src = "../assets/icons/trash-can-outline.svg";
+  deleteButtonImage.src = "assets/icons/trash-can-outline.svg";
 
   todoFormDeleteButton.appendChild(deleteButtonImage);
   todoFormBottomRight.appendChild(todoFormDeleteButton);

@@ -24,7 +24,7 @@ function projectForm() {
   projectFormSubmitButton.type = "submit";
   projectFormSubmitButton.id = "project-form-submit-button";
   const submitButtonImage = document.createElement("img");
-  submitButtonImage.src = "../assets/icons/check.svg";
+  submitButtonImage.src = "assets/icons/check.svg";
   projectFormSubmitButton.appendChild(submitButtonImage);
   projectFormRightSection.appendChild(projectFormSubmitButton);
 
@@ -33,7 +33,7 @@ function projectForm() {
   projectFormDeleteButton.id = "project-form-delete-button";
 
   const deleteButtonImage = document.createElement("img");
-  deleteButtonImage.src = "../assets/icons/trash-can-outline.svg";
+  deleteButtonImage.src = "assets/icons/trash-can-outline.svg";
   projectFormDeleteButton.appendChild(deleteButtonImage);
   projectFormRightSection.appendChild(projectFormDeleteButton);
 

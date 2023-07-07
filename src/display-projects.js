@@ -15,7 +15,7 @@ function displayProjects(projectList) {
     deleteProjectButton.classList.add("delete-project-button");
 
     const deleteButtonImage = document.createElement("img");
-    deleteButtonImage.src = "../assets/icons/trash-can-outline.svg";
+    deleteButtonImage.src = "assets/icons/trash-can-outline.svg";
     deleteProjectButton.appendChild(deleteButtonImage);
 
     project.appendChild(deleteProjectButton);
