@@ -43,6 +43,10 @@ header, #add-todo-button {
 
 button {
   cursor: pointer;
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 body {
@@ -278,6 +282,7 @@ textarea:focus, input:focus{
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
+  margin-bottom: -10px;
 }
 
 .todo-form-bottom-right {
@@ -285,12 +290,11 @@ textarea:focus, input:focus{
   gap: 10px;
 }
 
-#todo-form-delete-button, #todo-form-submit-button {
+#todo-form-delete-button, #todo-form-submit-button, #project-form-submit-button, #project-form-delete-button {
   border: 0px;
   background-color: rgba(0,0,0,0);
   margin: 0px;
   padding: 0px;
-  margin-bottom: -10px;
   width: 30px;
 }
 
@@ -339,6 +343,42 @@ input[type=checkbox] {
 
 .selected-project {
   background-color: var(--background-color) !important;
+}
+
+#project-form {
+  display: flex;
+  background-color: var(--background-color);
+  border-radius: 5px;
+  margin: 0px;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 5px;
+  padding-left: 10px;
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
+#project-form-left-section {
+  width: 100%;
+}
+
+#project-form-right-section {
+  display: flex;
+  gap: 5px;
+  height: 100%;
+}
+
+#project-form-title {
+  font-weight: 100;
+  font-family: openSans;
+  text-align: left;
+}
+
+.project {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 1440px) {
