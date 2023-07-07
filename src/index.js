@@ -1,9 +1,9 @@
-import todoItem from "./todo-item";
-import displayTodos from "./display-todos";
-import todoForm from "./todo-form";
+import todoItem from "./modules/todo-item";
+import displayTodos from "./modules/display-todos";
+import todoForm from "./modules/todo-form";
 import moment from "moment";
-import displayProjects from "./display-projects";
-import projectForm from "./project-form";
+import displayProjects from "./modules/display-projects";
+import projectForm from "./modules/project-form";
 
 // Fields
 // List of todo-item objects
